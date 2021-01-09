@@ -39,9 +39,13 @@ void printf2(T0 t0, T... t) {
 // 3. parameter unpack using initializer_list
 template<typename T, typename... Ts>
 auto printf3(T value, Ts... args) {
+    // compile error: C3520	“args”: 必须在此上下文中扩展参数
+    // std::cout << "test111-----: " << args << std::endl;
+    // https://www.imooc.com/wenda/detail/576519
+
     std::cout << value << std::endl;
     (void) std::initializer_list<T>{([&args] {
-        std::cout << args << std::endl;
+        std::cout << "test-----: " << args << std::endl;
     }(), value)...};
 }
 
